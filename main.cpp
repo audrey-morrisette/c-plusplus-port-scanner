@@ -89,16 +89,13 @@ int main(int argc, char **argv){
             }
             iResult = connect( connectSocket, result->ai_addr, (int)result->ai_addrlen);
             if (iResult == SOCKET_ERROR) {
-                closesocket(connectSocket);
-                connectSocket = INVALID_SOCKET;
                 tempPort->status = false;
-                continue;
             }else{
                 // connection succeeded
-                closesocket(connectSocket);
-                connectSocket = INVALID_SOCKET;
                 tempPort->status = true;
             }
+            closesocket(connectSocket);
+            connectSocket = INVALID_SOCKET;
         }// end if/else
 	}
 
